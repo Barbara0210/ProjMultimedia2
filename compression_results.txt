@@ -1,0 +1,86 @@
+
+    Compression Metrics for dickens:
+    Compression Ratio (CR): 1.00
+    Average Code Length (ACL): 1.00
+    Compressed Bit Rate: 0.12 bits per symbol
+    Encoding Time (ET): 0.78 seconds
+    Decoding Time (DT): 0.62 seconds
+  
+    Compression Metrics for mozilla:
+    Compression Ratio (CR): 1.12
+    Average Code Length (ACL): 0.89
+    Compressed Bit Rate: 0.11 bits per symbol
+    Encoding Time (ET): 3.83 seconds
+    Decoding Time (DT): 2.05 seconds
+  
+    Compression Metrics for mr:
+    Compression Ratio (CR): 1.38
+    Average Code Length (ACL): 0.73
+    Compressed Bit Rate: 0.09 bits per symbol
+    Encoding Time (ET): 0.52 seconds
+    Decoding Time (DT): 0.38 seconds
+  
+    Compression Metrics for nci:
+    Compression Ratio (CR): 1.04
+    Average Code Length (ACL): 0.96
+    Compressed Bit Rate: 0.12 bits per symbol
+    Encoding Time (ET): 2.74 seconds
+    Decoding Time (DT): 1.91 seconds
+  
+    Compression Metrics for ooffice:
+    Compression Ratio (CR): 1.07
+    Average Code Length (ACL): 0.94
+    Compressed Bit Rate: 0.12 bits per symbol
+    Encoding Time (ET): 0.48 seconds
+    Decoding Time (DT): 0.22 seconds
+  
+    Compression Metrics for osdb:
+    Compression Ratio (CR): 1.01
+    Average Code Length (ACL): 0.99
+    Compressed Bit Rate: 0.12 bits per symbol
+    Encoding Time (ET): 1.04 seconds
+    Decoding Time (DT): 0.57 seconds
+  
+    Compression Metrics for reymont:
+    Compression Ratio (CR): 1.00
+    Average Code Length (ACL): 1.00
+    Compressed Bit Rate: 0.12 bits per symbol
+    Encoding Time (ET): 0.44 seconds
+    Decoding Time (DT): 0.60 seconds
+  
+    Compression Metrics for samba:
+    Compression Ratio (CR): 1.10
+    Average Code Length (ACL): 0.91
+    Compressed Bit Rate: 0.11 bits per symbol
+    Encoding Time (ET): 1.31 seconds
+    Decoding Time (DT): 3.35 seconds
+  
+    Compression Metrics for sao:
+    Compression Ratio (CR): 1.03
+    Average Code Length (ACL): 0.97
+    Compressed Bit Rate: 0.12 bits per symbol
+    Encoding Time (ET): 1.13 seconds
+    Decoding Time (DT): 0.51 seconds
+  
+    Compression Metrics for webster:
+    Compression Ratio (CR): 1.00
+    Average Code Length (ACL): 1.00
+    Compressed Bit Rate: 0.12 bits per symbol
+    Encoding Time (ET): 5.20 seconds
+    Decoding Time (DT): 5.10 seconds
+  
+    Compression Metrics for x-ray:
+    Compression Ratio (CR): 1.00
+    Average Code Length (ACL): 1.00
+    Compressed Bit Rate: 0.12 bits per symbol
+    Encoding Time (ET): 1.19 seconds
+    Decoding Time (DT): 0.55 seconds
+  
+    Compression Metrics for xml:
+    Compression Ratio (CR): 1.01
+    Average Code Length (ACL): 0.99
+    Compressed Bit Rate: 0.12 bits per symbol
+    Encoding Time (ET): 0.64 seconds
+    Decoding Time (DT): 0.54 seconds
+  
+    

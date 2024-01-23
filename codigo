@@ -1,0 +1,134 @@
+const fs = require('fs');
+const path = require('path');
+
+// Função para realizar a compressão utilizando o algoritmo RLE
+function compressRLE(input) {
+  let count = 1;
+  let compressed = '';
+  let flag = 255;
+
+  // Verifica se existem caracteres iguais ao flag no input
+  if (input.includes(String.fromCharCode(flag))) {
+    let tempFlag = flag;
+
+    while (tempFlag > 0) {
+      if (!input.includes(String.fromCharCode(tempFlag))) {
+        flag = tempFlag;
+        break;
+      }
+      tempFlag--;
+    }
+  }
+
+  for (let i = 0; i < input.length; i++) {
+    if (input[i] === input[i + 1]) {
+      count++;
+    } else {
+      if (count >= 4) {
+        compressed += String.fromCharCode(flag) + count + input[i];
+      } else {
+        compressed += input[i].repeat(count);
+      }
+      count = 1;
+    }
+  }
+
+  return compressed;
+}
+
+// Função para realizar a descompressão utilizando o algoritmo RLE
+function decompressRLE(compressed) {
+  let decompressed = '';
+  let i = 0;
+  let flag = 255; // Defina a flag usada durante a compressão
+
+  while (i < compressed.length) {
+    if (compressed.charCodeAt(i) > flag) {
+      const count = parseInt(compressed[i + 1]);
+      const char = compressed[i + 2];
+
+      if (count && char && char !== undefined) {
+        decompressed += char.repeat(count);
+      }
+
+      i += 3;
+    } else {
+      decompressed += compressed[i];
+      i++;
+    }
+  }
+
+  return decompressed;
+}
+
+// Função para calcular as métricas de compressão
+function calculateCompressionMetrics(fileName, original, compressed, encodingTime, decodingTime) {
+  const originalSize = original.length;
+  const compressedSize = compressed.length;
+  const compressionRatio = originalSize / compressedSize;
+  const averageCodeLength = compressedSize / originalSize;
+  const compressedBitRate = compressedSize / (originalSize * 8);
+  const encodingTimeSeconds = encodingTime / 1000; // Tempo de compressão em segundos
+  const decodingTimeSeconds = decodingTime / 1000; // Tempo de descompressão em segundos
+
+  console.log('Compression Metrics for', fileName);
+  console.log('Compression Ratio (CR):', compressionRatio.toFixed(2));
+  console.log('Average Code Length (ACL):', averageCodeLength.toFixed(2));
+  console.log('Compressed Bit Rate:', compressedBitRate.toFixed(2), 'bits per symbol');
+  console.log('Encoding Time (ET):', encodingTimeSeconds.toFixed(2), 'seconds');
+  console.log('Decoding Time (DT):', decodingTimeSeconds.toFixed(2), 'seconds');
+
+  // Cria o conteúdo a ser gravado no arquivo de resultados
+  const resultContent = `
+    Compression Metrics for ${fileName}:
+    Compression Ratio (CR): ${compressionRatio.toFixed(2)}
+    Average Code Length (ACL): ${averageCodeLength.toFixed(2)}
+    Compressed Bit Rate: ${compressedBitRate.toFixed(2)} bits per symbol
+    Encoding Time (ET): ${encodingTimeSeconds.toFixed(2)} seconds
+    Decoding Time (DT): ${decodingTimeSeconds.toFixed(2)} seconds
+  `;
+
+  // Define o caminho do arquivo de resultados
+  const resultFilePath = path.join(__dirname, 'compression_results.txt');
+
+  // Grava o conteúdo no arquivo de resultados
+  fs.appendFileSync(resultFilePath, resultContent, 'utf8');
+}
+
+// Função para ler os arquivos de uma pasta
+function readFilesFromFolder(folderPath) {
+  // Lê os arquivos da pasta
+  fs.readdir(folderPath, (err, files) => {
+    if (err) {
+      console.error('Error reading folder:', err);
+      return;
+    }
+
+    // Itera sobre cada arquivo
+    files.forEach(file => {
+      const filePath = path.join(folderPath, file);
+      const fileContents = fs.readFileSync(filePath, 'utf8');
+
+      console.log('\n--- File:', file, '---');
+
+      // Compressão
+      const startTimeEncoding = new Date().getTime();
+      const compressed = compressRLE(fileContents);
+      const encodingTime = new Date().getTime() - startTimeEncoding;
+
+      // Descompressão
+      const startTimeDecoding = new Date().getTime();
+      const decompressed = decompressRLE(compressed);
+      const decodingTime = new Date().getTime() - startTimeDecoding;
+
+      // Cálculo das métricas
+      calculateCompressionMetrics(file, fileContents, compressed, encodingTime, decodingTime);
+    });
+  });
+}
+
+// Caminho da pasta que contém os arquivos a serem processados
+const folderPath = path.join(__dirname, 'CorpusSilesia');
+
+// Chamada da função para ler os arquivos da pasta
+readFilesFromFolder(folderPath);

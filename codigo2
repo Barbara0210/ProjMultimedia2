@@ -1,0 +1,130 @@
+const fs = require('fs');
+
+// Função para realizar a compressão utilizando o algoritmo RLE
+function compressRLE(input) {
+  let count = 1;
+  let compressed = '';
+  let trace = '';
+  let flag = String.fromCharCode(255);
+
+  // Percorre a sequência de entrada
+  for (let i = 0; i < input.length; i++) {
+    // Se o caractere atual for igual ao próximo, incrementa o contador
+    if (input[i] === input[i + 1]) {
+      count++;
+    } else {
+      // Verifica se o contador é maior ou igual a 4 para comprimir a sequência
+      if (count >= 4) {
+        compressed += `${flag}${count}${input[i]}`;
+        trace += `${count}${input[i]} `;
+      } else {
+        compressed += input[i].repeat(count);
+        trace += `${input[i]} `.repeat(count);
+      }
+      count = 1;
+
+      // Verifica se a flag atual já está presente no texto original
+      if (input.includes(flag)) {
+        flag = String.fromCharCode(flag.charCodeAt(0) - 1);
+      }
+    }
+  }
+
+
+  // Cálculo da taxa de compressão
+  const originalSize = input.length;
+  const compressedSize = compressed.length;
+  const compressionRatio = originalSize / compressedSize;
+
+  return { compressed, trace, compressionRatio };
+}
+
+// Função para realizar a descompressão utilizando o algoritmo RLE
+function decompressRLE(input) {
+  let decompressed = '';
+  let trace = '';
+  let flag = String.fromCharCode(255);
+
+  // Início do tempo de descompressão
+  const decompressionStartTime = process.hrtime();
+
+  // Percorre a sequência comprimida
+  let i = 0;
+  while (i < input.length) {
+    if (input[i] === flag) {
+      const count = parseInt(input[i + 1]);
+      const char = input[i + 2];
+
+      if (count && char && char !== undefined) {
+        decompressed += char.repeat(count);
+        trace += `${flag}${count}${char} `;
+      }
+
+      i += 3;
+
+      // Verifica se a flag atual já está presente no texto original
+      if (decompressed.includes(flag)) {
+        flag = String.fromCharCode(flag.charCodeAt(0) - 1);
+      }
+    } else {
+      decompressed += input[i];
+      trace += `${input[i]} `;
+      i++;
+    }
+  }
+
+  // Fim do tempo de descompressão
+  const decompressionEndTime = process.hrtime(decompressionStartTime);
+  const decompressionTime = decompressionEndTime[0] + decompressionEndTime[1] / 1e9;
+
+  // Cálculo da taxa de compressão
+  const originalSize = decompressed.length;
+  const compressedSize = input.length;
+  const compressionRatio = originalSize / compressedSize;
+
+  return { decompressed, trace, decompressionTime, compressionRatio };
+}
+
+// Sequência de teste
+const sequence = `Nãoooooo seei quantas almas tenho. Cada momento mudei. Continuamente
+me estranho. Nunca me vi nem accccchei. De tanto ser, só tenho alma.
+Quem tem alma não tem calma. Queem vê é só oo que vê,    Quem sente não
+é quem é, Atento ao que sou e vejo, Torno-me eles e não eu. Cada meu
+sonho ou desejo, É do que nasce e não meu.`;
+
+console.log('--- Compression Trace ---');
+
+// Compressão
+const { compressed, trace: compressTrace, compressionRatio, compressionTime } = compressRLE(sequence);
+
+console.log('Compressed:', compressed);
+console.log('Compression Trace:', compressTrace);
+console.log('Compression Ratio:', compressionRatio.toFixed(2));
+
+console.log('--- Decompression Trace ---');
+
+// Descompressão a partir do resultado da compressão
+const { decompressed, trace: decompressTrace, decompressionTime } = decompressRLE(compressed);
+
+console.log('Decompressed:', decompressed);
+console.log('Decompression Trace:', decompressTrace);
+
+// Caminho do arquivo de resultados
+const resultFilePath = "resultados.txt";
+
+// Cria o conteúdo a ser gravado no arquivo
+const resultContent = `
+--- Compression Trace ---
+Compressed: ${compressed}
+Compression Trace: ${compressTrace}
+Compression Ratio: ${compressionRatio.toFixed(2)}
+
+--- Decompression Trace ---
+Decompressed: ${decompressed}
+Decompression Trace: ${decompressTrace}
+`;
+
+// Grava o conteúdo no arquivo de resultados
+fs.writeFileSync(resultFilePath, resultContent, 'utf8');
+
+console.log('Resultados exportados para:', resultFilePath);

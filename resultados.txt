@@ -1,0 +1,25 @@
+
+--- Compression Trace ---
+Compressed: Nãÿ6o seei quantas almas tenho. Cada momento mudei. Continuamente
+me estranho. Nunca me vi nem aÿ5chei. De tanto ser, só tenho alma.
+Quem tem alma não tem calma. Queem vê é só oo que vê,ÿ4 Quem sente não
+é quem é, Atento ao que sou e vejo, Torno-me eles e não eu. Cada meu
+sonho ou desejo, É do que nasce e não meu.
+Compression Trace: N ã 6o   s e e i   q u a n t a s   a l m a s   t e n h o .   C a d a   m o m e n t o   m u d e i .   C o n t i n u a m e n t e 
+ m e   e s t r a n h o .   N u n c a   m e   v i   n e m   a 5c h e i .   D e   t a n t o   s e r ,   s ó   t e n h o   a l m a . 
+ Q u e m   t e m   a l m a   n ã o   t e m   c a l m a .   Q u e e m   v ê   é   s ó   o o   q u e   v ê , 4  Q u e m   s e n t e   n ã o 
+ é   q u e m   é ,   A t e n t o   a o   q u e   s o u   e   v e j o ,   T o r n o - m e   e l e s   e   n ã o   e u .   C a d a   m e u 
+ s o n h o   o u   d e s e j o ,   É   d o   q u e   n a s c e   e   n ã o   m e u . 
+Compression Ratio: 1.02
+
+--- Decompression Trace ---
+Decompressed: Nãoooooo seei quantas almas tenho. Cada momento mudei. Continuamente
+me estranho. Nunca me vi nem accccchei. De tanto ser, só tenho alma.
+Quem tem alma não tem calma. Queem vê é só oo que vê,    Quem sente não
+é quem é, Atento ao que sou e vejo, Torno-me eles e não eu. Cada meu
+sonho ou desejo, É do que nasce e não meu.
+Decompression Trace: N ã ÿ6o   s e e i   q u a n t a s   a l m a s   t e n h o .   C a d a   m o m e n t o   m u d e i .   C o n t i n u a m e n t e 
+ m e   e s t r a n h o .   N u n c a   m e   v i   n e m   a ÿ5c h e i .   D e   t a n t o   s e r ,   s ó   t e n h o   a l m a . 
+ Q u e m   t e m   a l m a   n ã o   t e m   c a l m a .   Q u e e m   v ê   é   s ó   o o   q u e   v ê , ÿ4  Q u e m   s e n t e   n ã o 
+ é   q u e m   é ,   A t e n t o   a o   q u e   s o u   e   v e j o ,   T o r n o - m e   e l e s   e   n ã o   e u .   C a d a   m e u 
+ s o n h o   o u   d e s e j o ,   É   d o   q u e   n a s c e   e   n ã o   m e u . 
